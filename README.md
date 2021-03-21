@@ -1,6 +1,7 @@
 # NewVotePlugin  
 ・動作確認環境:Minecraft1.15.2/PaperMC1.15.2,Minecraft1.16.5/PaperMC1.16.5  
 ・参考プラグイン:https://github.com/TeamKun/VotePlugin  
+・投票したかどうかはTabリストから確認可能.
   
 ## コマンド一覧    
 〇必要権限:OP  
