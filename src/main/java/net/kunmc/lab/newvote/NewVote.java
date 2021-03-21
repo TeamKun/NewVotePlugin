@@ -110,6 +110,7 @@ public final class NewVote extends JavaPlugin implements CommandExecutor, TabCom
                     //投票結果の表示
                     VoteResultLogic.sendVotingResult(ReceiverList2);
                     ScoreBoardLogic.setVoteStatus(2,(Player) sender);
+                    List = new ArrayList<>();
                     //投票開始、投票先開示を有効にする
                     vs = false;vget = true;
                 }
