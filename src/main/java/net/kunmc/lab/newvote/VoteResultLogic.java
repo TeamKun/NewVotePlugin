@@ -72,6 +72,7 @@ public class VoteResultLogic {
             int num = i;
             Bukkit.getOnlinePlayers().forEach(player -> {
                 player.sendMessage(ChatColor.GREEN + senders.get(num) +ChatColor.WHITE + "   ➡   " +ChatColor.GREEN + receivers.get(num));
+                ScoreBoardLogic.setVoteResult(senders.get(num),receivers.get(num));
             });
         }
         Bukkit.getOnlinePlayers().forEach(player -> {

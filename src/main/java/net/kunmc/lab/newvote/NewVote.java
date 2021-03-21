@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,7 +26,7 @@ public final class NewVote extends JavaPlugin implements CommandExecutor, TabCom
     }
 
     //vs=投票時判定用,vget=投票開示時判定用
-    static boolean vs = false,vget = false;
+    static boolean vs = false,vget = false,vlist=false;
     //SenderList=投票者のリスト,ReceiverList=被投票者のリスト
     static List<String> SenderList1 = new ArrayList<>(),ReceiverList1 = new ArrayList<>();
     static List<String> SenderList2 = new ArrayList<>(),ReceiverList2 = new ArrayList<>();
@@ -85,8 +84,13 @@ public final class NewVote extends JavaPlugin implements CommandExecutor, TabCom
         else if(cmd.getName().equals("vs")){
             if(args.length==0) {
                 if(sender.isOp()){
+                if(vlist){
+                    ScoreBoardLogic.setVoteStatus(2,(Player) sender);
+                    vlist=false;
+                    sender.sendMessage(ChatColor.GREEN + "Tabリストから投票先の表示を削除しました。");
+                }
                 //一度目の/vsコマンド使用時に関する処理(投票開始)
-                if (!vs) {
+                else if (!vs) {
                     reloadConfig();saveConfig();
                     //投票開始の連絡を全プレイヤーに行う
                     Bukkit.getOnlinePlayers().forEach(player -> {
@@ -129,7 +133,7 @@ public final class NewVote extends JavaPlugin implements CommandExecutor, TabCom
                         //各投票者の投票先の表示
                         VoteResultLogic.sendVotingDestination(SenderList2,ReceiverList2);
                         //投票開始を有効、投票先開示を無効にする。
-                        vs = false;vget = false;
+                        vs = false;vget = false;vlist=true;
                     }
                     //例外:投票が開始もしくは終了されていないときの処理
                     else{

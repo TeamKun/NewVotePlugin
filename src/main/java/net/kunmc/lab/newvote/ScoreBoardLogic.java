@@ -23,9 +23,24 @@ public class ScoreBoardLogic {
             sender.setPlayerListName(sender.getName()+ChatColor.GOLD+"  ✓");
         }
         //投票終了時
-        else{Bukkit.getOnlinePlayers().forEach(player -> {
+        else{
+            Bukkit.getOnlinePlayers().forEach(player -> {
             player.setPlayerListName(player.getName());
         });
         }
+    }
+
+    /**
+     * Tabを押した際表示されるプレイヤーリストに投票の状態を表示する。
+     *
+     * @param sender プレイヤー名 投票者
+     * @param receiver プレイヤー名 投票先
+     */
+    static void setVoteResult(String sender,String receiver){
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            if(player.getName().equals(sender)) {
+                player.setPlayerListName(player.getName() + " : "+ ChatColor.AQUA +receiver);
+            }
+        });
     }
 }
