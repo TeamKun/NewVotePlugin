@@ -16,11 +16,11 @@ public class ScoreBoardLogic {
     static void setVoteStatus(int pattern, Player sender){
         //投票開始時の処理
         if(pattern==0){
-            sender.setPlayerListName(sender.getName()+ChatColor.GRAY+"  ×");
+            sender.setPlayerListName(ChatColor.GRAY+"× "+ChatColor.WHITE+sender.getName());
         }
         //投票時
         else if(pattern==1){
-            sender.setPlayerListName(sender.getName()+ChatColor.GOLD+"  ✓");
+            sender.setPlayerListName(ChatColor.GOLD+"✓ "+ChatColor.WHITE+sender.getName());
         }
         //投票終了時
         else{
