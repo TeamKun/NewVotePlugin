@@ -65,18 +65,13 @@ public class VoteResultLogic {
         //投票先の表示処理(全プレイヤーに表示)
         Bukkit.getOnlinePlayers().forEach(player -> {
             player.sendMessage(ChatColor.GOLD + "投票先を開示します。");
-            player.sendMessage(ChatColor.AQUA + "==========投票先一覧==========");
-            player.sendMessage(ChatColor.GREEN+ "  投票者               投票先  ");
+            player.sendMessage(ChatColor.AQUA + "Tabを押してスコアボードを確認してください。");
         });
         for (int i = 0; i < senders.size(); i++) {
             int num = i;
             Bukkit.getOnlinePlayers().forEach(player -> {
-                player.sendMessage(ChatColor.GREEN + senders.get(num) +ChatColor.WHITE + "   ➡   " +ChatColor.GREEN + receivers.get(num));
                 ScoreBoardLogic.setVoteResult(senders.get(num),receivers.get(num));
             });
         }
-        Bukkit.getOnlinePlayers().forEach(player -> {
-            player.sendMessage(ChatColor.AQUA + "==========投票先一覧==========");
-        });
     }
 }
